@@ -88,3 +88,11 @@ GitHub Actions is used to automatically validate the project whenever changes ar
 ## Project Status
 
 Currently, the project is in the planning and database development stage. The ERD, API endpoint plan and SQL database script have been prepared before the API implementation.
+
+## Youtube link
+https://youtu.be/XD1irpKBGyM?si=KASQzWLXHaXCRpxc
+
+## Github link
+https://github.com/AngelMakua-dev/RaceDays.git
+
+
