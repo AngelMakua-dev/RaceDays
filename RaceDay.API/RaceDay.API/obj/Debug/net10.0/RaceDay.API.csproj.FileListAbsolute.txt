@@ -168,3 +168,5 @@ C:\Users\angel\OneDrive\Desktop\RaceDays\RaceDay.API\RaceDay.API\obj\Debug\net10
 C:\Users\angel\OneDrive\Desktop\RaceDays\RaceDay.API\RaceDay.API\obj\Debug\net10.0\RaceDay.API.pdb
 C:\Users\angel\OneDrive\Desktop\RaceDays\RaceDay.API\RaceDay.API\obj\Debug\net10.0\RaceDay.API.genruntimeconfig.cache
 C:\Users\angel\OneDrive\Desktop\RaceDays\RaceDay.API\RaceDay.API\obj\Debug\net10.0\ref\RaceDay.API.dll
+C:\Users\angel\OneDrive\Desktop\RaceDays\RaceDay.API\RaceDay.API\bin\Debug\net10.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\angel\OneDrive\Desktop\RaceDays\RaceDay.API\RaceDay.API\bin\Debug\net10.0\Microsoft.Bcl.Cryptography.dll
