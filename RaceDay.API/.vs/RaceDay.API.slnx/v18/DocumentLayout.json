@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\angel\\OneDrive\\Desktop\\RaceDays\\RaceDay.API\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{48D9D8E2-607E-794F-661B-67674A1416B8}|RaceDay.API\\RaceDay.API.csproj|c:\\users\\angel\\onedrive\\desktop\\racedays\\raceday.api\\raceday.api\\controllers\\eventscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{48D9D8E2-607E-794F-661B-67674A1416B8}|RaceDay.API\\RaceDay.API.csproj|solutionrelative:raceday.api\\controllers\\eventscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{48D9D8E2-607E-794F-661B-67674A1416B8}|RaceDay.API\\RaceDay.API.csproj|c:\\users\\angel\\onedrive\\desktop\\racedays\\raceday.api\\raceday.api\\controllers\\profilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{48D9D8E2-607E-794F-661B-67674A1416B8}|RaceDay.API\\RaceDay.API.csproj|solutionrelative:raceday.api\\controllers\\profilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{48D9D8E2-607E-794F-661B-67674A1416B8}|RaceDay.API\\RaceDay.API.csproj|c:\\users\\angel\\onedrive\\desktop\\racedays\\raceday.api\\raceday.api\\dtos\\eventrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{48D9D8E2-607E-794F-661B-67674A1416B8}|RaceDay.API\\RaceDay.API.csproj|solutionrelative:raceday.api\\dtos\\eventrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{48D9D8E2-607E-794F-661B-67674A1416B8}|RaceDay.API\\RaceDay.API.csproj|c:\\users\\angel\\onedrive\\desktop\\racedays\\raceday.api\\raceday.api\\controllers\\profilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{48D9D8E2-607E-794F-661B-67674A1416B8}|RaceDay.API\\RaceDay.API.csproj|solutionrelative:raceday.api\\controllers\\profilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{48D9D8E2-607E-794F-661B-67674A1416B8}|RaceDay.API\\RaceDay.API.csproj|c:\\users\\angel\\onedrive\\desktop\\racedays\\raceday.api\\raceday.api\\controllers\\eventscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{48D9D8E2-607E-794F-661B-67674A1416B8}|RaceDay.API\\RaceDay.API.csproj|solutionrelative:raceday.api\\controllers\\eventscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{48D9D8E2-607E-794F-661B-67674A1416B8}|RaceDay.API\\RaceDay.API.csproj|c:\\users\\angel\\onedrive\\desktop\\racedays\\raceday.api\\raceday.api\\dtos\\updateprofilerequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -102,7 +102,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -114,7 +114,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "EventsController.cs",
               "DocumentMoniker": "C:\\Users\\angel\\OneDrive\\Desktop\\RaceDays\\RaceDay.API\\RaceDay.API\\Controllers\\EventsController.cs",
               "RelativeDocumentMoniker": "RaceDay.API\\Controllers\\EventsController.cs",
@@ -140,7 +140,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "ProfileController.cs",
               "DocumentMoniker": "C:\\Users\\angel\\OneDrive\\Desktop\\RaceDays\\RaceDay.API\\RaceDay.API\\Controllers\\ProfileController.cs",
               "RelativeDocumentMoniker": "RaceDay.API\\Controllers\\ProfileController.cs",
