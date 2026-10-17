@@ -89,10 +89,48 @@ GitHub Actions is used to automatically validate the project whenever changes ar
 
 Currently, the project is in the planning and database development stage. The ERD, API endpoint plan and SQL database script have been prepared before the API implementation.
 
-## Youtube link
-https://youtu.be/XD1irpKBGyM?si=KASQzWLXHaXCRpxc
 
-## Github link
-https://github.com/AngelMakua-dev/RaceDays.git
+## RaceDay API — Part 2
 
+### Overview
+
+The RaceDay API is an ASP.NET Core Web API built with .NET 10 and SQL Server. It provides backend functionality for user registration, login, profiles, events, categories, participant enrolments, and race results.
+
+### Technologies
+
+- C#
+- ASP.NET Core Web API
+- .NET 10
+- Entity Framework Core
+- Microsoft SQL Server
+- JWT authentication
+- Swagger / OpenAPI
+- xUnit unit testing
+- GitHub Actions
+
+### Main API Areas
+
+| Area | Purpose |
+|---|---|
+| Authentication | Register and log in |
+| Account | Authenticated account and role checks |
+| Profile | View and update profile details |
+| Events | Manage race events |
+| Categories | Manage event categories |
+| Enrolments | Register participants for categories |
+| Results | Record and view race results |
+
+### Running the Project
+
+1. Install the .NET 10 SDK.
+2. Ensure SQL Server is installed and running.
+3. Configure the database connection string.
+4. Configure JWT settings for development.
+5. Open the solution in Visual Studio.
+6. Restore NuGet packages and build the solution.
+7. Run the API and open Swagger to explore the endpoints.
+
+### Automated Testing
+
+The project includes an xUnit test project. GitHub Actions is configured to build the solution and run automated tests when changes are pushed or pull requests are opened.
 
