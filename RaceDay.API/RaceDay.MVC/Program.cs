@@ -1,29 +1,37 @@
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Register MVC services
 builder.Services.AddControllersWithViews();
+
+// Read the RaceDay API address
+var apiBaseUrl = builder.Configuration["ApiSettings:BaseUrl"]
+    ?? throw new InvalidOperationException("API Base URL is missing.");
+
+// Configure communication with the RaceDay API
+builder.Services.AddHttpClient("RaceDayAPI", client =>
+{
+    client.BaseAddress = new Uri(apiBaseUrl);
+});
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configure the application
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
 app.UseHttpsRedirection();
+app.UseStaticFiles();
+
 app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapStaticAssets();
-
+// Configure the default MVC route
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}")
-    .WithStaticAssets();
-
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
