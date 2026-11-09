@@ -1,27 +1,34 @@
-
 using RaceDay.MVC.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Register MVC services
 builder.Services.AddControllersWithViews();
+
+// Enable sessions
+builder.Services.AddDistributedMemoryCache();
+
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(60);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 
 // Read the RaceDay API address
 var apiBaseUrl = builder.Configuration["ApiSettings:BaseUrl"]
     ?? throw new InvalidOperationException("API Base URL is missing.");
 
-// Configure communication with the RaceDay API
+// Configure communication with the API
 builder.Services.AddHttpClient("RaceDayAPI", client =>
 {
     client.BaseAddress = new Uri(apiBaseUrl);
 });
 
-// Register our API service
+// Register API service
 builder.Services.AddScoped<RaceDayApiService>();
 
 var app = builder.Build();
 
-// Configure the application
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
@@ -33,9 +40,11 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+// Enable session middleware
+app.UseSession();
+
 app.UseAuthorization();
 
-// Configure the default MVC route
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

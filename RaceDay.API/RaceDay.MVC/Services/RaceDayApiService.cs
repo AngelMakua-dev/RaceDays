@@ -1,5 +1,4 @@
-﻿
-using System.Net.Http.Json;
+﻿using System.Net.Http.Json;
 
 namespace RaceDay.MVC.Services
 {
@@ -26,6 +25,13 @@ namespace RaceDay.MVC.Services
             response.EnsureSuccessStatusCode();
 
             return await response.Content.ReadFromJsonAsync<TResponse>();
+        }
+
+        public async Task<HttpResponseMessage> PostForResponseAsync<TRequest>(
+            string endpoint,
+            TRequest data)
+        {
+            return await _httpClient.PostAsJsonAsync(endpoint, data);
         }
     }
 }

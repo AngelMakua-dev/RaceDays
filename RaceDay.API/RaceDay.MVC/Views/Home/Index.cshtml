@@ -1,8 +1,367 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@using Microsoft.AspNetCore.Http
+
+@{
+    ViewData["Title"] = "RaceDay Home";
+
+    var firstName = Context.Session.GetString("FirstName");
+    var role = Context.Session.GetString("Role");
+
+    var isLoggedIn = !string.IsNullOrEmpty(
+        Context.Session.GetString("Token"));
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<style>
+    .home-hero {
+        position: relative;
+        min-height: 470px;
+        border-radius: 16px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        background:
+            linear-gradient(90deg, rgba(45, 5, 20, 0.95), rgba(45, 5, 20, 0.55)),
+            url('https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=1800&q=85');
+        background-size: cover;
+        background-position: center;
+        margin-top: 25px;
+        margin-bottom: 65px;
+    }
+
+    .hero-content {
+        color: white;
+        padding: 65px;
+        max-width: 750px;
+    }
+
+    .hero-label {
+        color: #d6b879;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+    }
+
+    .hero-title {
+        color: white;
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(38px, 6vw, 65px);
+        font-weight: 800;
+        line-height: 1.1;
+        margin-top: 20px;
+    }
+
+    .hero-description {
+        color: #eee3e7;
+        font-size: 16px;
+        line-height: 1.8;
+        max-width: 550px;
+        margin-top: 20px;
+    }
+
+    .hero-button {
+        display: inline-block;
+        background: #ffffff;
+        color: #64152f;
+        padding: 14px 27px;
+        border-radius: 5px;
+        font-weight: 700;
+        text-decoration: none;
+        margin-top: 20px;
+        margin-right: 10px;
+        transition: 0.3s;
+    }
+
+    .hero-button:hover {
+        background: #d6b879;
+        color: #430d20;
+        transform: translateY(-2px);
+    }
+
+    .hero-button-outline {
+        background: transparent;
+        color: white;
+        border: 1px solid white;
+    }
+
+    .hero-button-outline:hover {
+        background: white;
+        color: #64152f;
+    }
+
+    .section-heading {
+        font-family: 'Playfair Display', serif;
+        font-size: 36px;
+        font-weight: 700;
+        margin-bottom: 12px;
+    }
+
+    .section-description {
+        color: #777177;
+        margin-bottom: 35px;
+    }
+
+    .feature-card {
+        background: white;
+        border: none;
+        border-radius: 12px;
+        padding: 30px;
+        height: 100%;
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
+        transition: 0.3s;
+        border-bottom: 3px solid transparent;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-7px);
+        border-bottom-color: #64152f;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.09);
+    }
+
+    .feature-number {
+        color: #64152f;
+        font-family: 'Playfair Display', serif;
+        font-size: 35px;
+        font-weight: 800;
+    }
+
+    .feature-card h4 {
+        font-family: 'Inter', sans-serif;
+        font-size: 18px;
+        font-weight: 700;
+        margin-top: 15px;
+    }
+
+    .feature-card p {
+        color: #777177;
+        font-size: 14px;
+        line-height: 1.8;
+    }
+
+    .account-panel {
+        background: white;
+        border-radius: 12px;
+        padding: 30px;
+        margin-bottom: 45px;
+        border-left: 5px solid #64152f;
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
+    }
+
+    .account-role {
+        display: inline-block;
+        background: #f5e8ed;
+        color: #64152f;
+        padding: 7px 15px;
+        border-radius: 30px;
+        font-size: 12px;
+        font-weight: 700;
+    }
+
+    .home-section {
+        margin-bottom: 70px;
+    }
+
+    @@media (max-width: 768px) {
+        .hero-content {
+            padding: 35px 25px;
+        }
+
+        .home-hero {
+            min-height: 420px;
+        }
+
+        .section-heading {
+            font-size: 29px;
+        }
+    }
+</style>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success mt-3">
+        @TempData["Success"]
+    </div>
+}
+
+<section class="home-hero">
+
+    <div class="hero-content">
+
+        <div class="hero-label">
+            The spirit of competition
+        </div>
+
+        @if (isLoggedIn)
+        {
+            <h1 class="hero-title">
+                Welcome back,<br />
+                @firstName.
+            </h1>
+
+            <p class="hero-description">
+                Your RaceDay journey continues here.
+                Get ready to discover new challenges
+                and make every race count.
+            </p>
+
+            @if (role == "Participant")
+            {
+                <a asp-controller="Participant"
+                   asp-action="Index"
+                   class="hero-button">
+                    My Dashboard
+                </a>
+            }
+            else
+            {
+                <a asp-controller="Home"
+                   asp-action="Index"
+                   class="hero-button">
+                    My Account
+                </a>
+            }
+        }
+        else
+        {
+            <h1 class="hero-title">
+                Every race.<br />
+                Every challenge.<br />
+                Every victory.
+            </h1>
+
+            <p class="hero-description">
+                Discover sporting experiences, challenge
+                yourself and become part of the RaceDay
+                community.
+            </p>
+
+            <a asp-controller="Auth"
+               asp-action="Register"
+               class="hero-button">
+                Join RaceDay
+            </a>
+
+            <a asp-controller="Auth"
+               asp-action="Login"
+               class="hero-button hero-button-outline">
+                Login
+            </a>
+        }
+
+    </div>
+
+</section>
+
+@if (isLoggedIn)
+{
+    <section class="account-panel">
+
+        <div class="row align-items-center">
+
+            <div class="col-md-8">
+
+                <span class="account-role">
+                    @role ACCOUNT
+                </span>
+
+                <h3 class="mt-3">
+                    Your RaceDay Account
+                </h3>
+
+                <p class="text-muted mb-0">
+                    You're signed in and ready to explore RaceDay.
+                </p>
+
+            </div>
+
+            <div class="col-md-4 text-md-end mt-3 mt-md-0">
+
+                <a asp-controller="Auth"
+                   asp-action="Logout"
+                   class="btn btn-raceday">
+                    Logout
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+}
+
+<section class="home-section">
+
+    <div class="text-center">
+
+        <div class="hero-label">
+            Discover RaceDay
+        </div>
+
+        <h2 class="section-heading mt-3">
+            More than just a race.
+        </h2>
+
+        <p class="section-description">
+            Everything you need to make your sporting journey count.
+        </p>
+
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-md-4">
+
+            <div class="feature-card">
+
+                <div class="feature-number">01</div>
+
+                <h4>Discover Events</h4>
+
+                <p>
+                    Explore sporting opportunities and find
+                    challenges that match your interests
+                    and fitness goals.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="feature-card">
+
+                <div class="feature-number">02</div>
+
+                <h4>Your Race Journey</h4>
+
+                <p>
+                    Keep your participant information
+                    organised and stay connected with
+                    your sporting activities.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="feature-card">
+
+                <div class="feature-number">03</div>
+
+                <h4>Celebrate Progress</h4>
+
+                <p>
+                    Follow your sporting journey and
+                    celebrate the milestones and
+                    achievements along the way.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

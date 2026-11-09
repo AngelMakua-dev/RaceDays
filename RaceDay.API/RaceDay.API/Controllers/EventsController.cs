@@ -10,7 +10,6 @@ namespace RaceDay.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize]
     public class EventsController : ControllerBase
     {
         private readonly RaceDayDbContext _context;
@@ -50,9 +49,9 @@ namespace RaceDay.API.Controllers
             };
         }
 
-        /// <summary>
-        /// Lists all events for authenticated users.
-        /// </summary>
+        // GET: api/Events
+        // Public access: anyone can view events.
+        [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> GetEvents()
         {
@@ -64,9 +63,9 @@ namespace RaceDay.API.Controllers
             return Ok(events.Select(ToEventResponse));
         }
 
-        /// <summary>
-        /// Gets one event by its ID.
-        /// </summary>
+        // GET: api/Events/5
+        // Public access: anyone can view an individual event.
+        [AllowAnonymous]
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetEvent(int id)
         {
@@ -85,9 +84,8 @@ namespace RaceDay.API.Controllers
             return Ok(ToEventResponse(e));
         }
 
-        /// <summary>
-        /// Creates an event. Organisers only.
-        /// </summary>
+        // POST: api/Events
+        // Organisers only.
         [Authorize(Roles = "Organiser")]
         [HttpPost]
         public async Task<IActionResult> CreateEvent(
@@ -137,9 +135,8 @@ namespace RaceDay.API.Controllers
                 ToEventResponse(e));
         }
 
-        /// <summary>
-        /// Updates an event owned by the current organiser.
-        /// </summary>
+        // PUT: api/Events/5
+        // Organisers only.
         [Authorize(Roles = "Organiser")]
         [HttpPut("{id:int}")]
         public async Task<IActionResult> UpdateEvent(
@@ -198,9 +195,8 @@ namespace RaceDay.API.Controllers
             return Ok(ToEventResponse(e));
         }
 
-        /// <summary>
-        /// Deletes an event owned by the current organiser.
-        /// </summary>
+        // DELETE: api/Events/5
+        // Organisers only.
         [Authorize(Roles = "Organiser")]
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteEvent(int id)

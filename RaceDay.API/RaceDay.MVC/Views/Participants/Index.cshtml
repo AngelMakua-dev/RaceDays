@@ -1,0 +1,63 @@
+﻿@using Microsoft.AspNetCore.Http
+
+@{
+    ViewData["Title"] = "Participant Dashboard";
+
+    var firstName = Context.Session.GetString("FirstName");
+    var lastName = Context.Session.GetString("LastName");
+    var email = Context.Session.GetString("Email");
+}
+
+<div class="container mt-5">
+
+    <div class="text-center mb-5">
+        <h1 class="display-5 fw-bold">Participant Dashboard</h1>
+
+        <p class="lead">
+            Welcome back, @firstName!
+        </p>
+
+        <p class="text-muted">
+            Your RaceDay journey starts here.
+        </p>
+    </div>
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-5">
+            <div class="card shadow border-0 mb-4">
+                <div class="card-body p-4">
+
+                    <h4 class="mb-3">My Profile</h4>
+
+                    <p>
+                        <strong>First Name:</strong> @firstName
+                    </p>
+
+                    <p>
+                        <strong>Last Name:</strong> @lastName
+                    </p>
+
+                    <p>
+                        <strong>Email:</strong> @email
+                    </p>
+
+                    <span class="badge bg-success">
+                        Participant
+                    </span>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="text-center mt-3">
+        <a asp-controller="Home"
+           asp-action="Index"
+           class="btn btn-outline-dark">
+            Back to Home
+        </a>
+    </div>
+
+</div>
