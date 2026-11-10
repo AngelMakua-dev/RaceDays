@@ -1,4 +1,5 @@
-﻿using System.Net.Http.Json;
+﻿using System.Net.Http.Headers;
+using System.Net.Http.Json;
 
 namespace RaceDay.MVC.Services
 {
@@ -21,7 +22,6 @@ namespace RaceDay.MVC.Services
             TRequest data)
         {
             var response = await _httpClient.PostAsJsonAsync(endpoint, data);
-
             response.EnsureSuccessStatusCode();
 
             return await response.Content.ReadFromJsonAsync<TResponse>();
@@ -32,6 +32,41 @@ namespace RaceDay.MVC.Services
             TRequest data)
         {
             return await _httpClient.PostAsJsonAsync(endpoint, data);
+        }
+
+        public async Task<T?> GetWithTokenAsync<T>(
+            string endpoint,
+            string token)
+        {
+            using var request = new HttpRequestMessage(HttpMethod.Get, endpoint);
+
+            request.Headers.Authorization =
+                new AuthenticationHeaderValue("Bearer", token);
+
+            using var response = await _httpClient.SendAsync(request);
+
+            response.EnsureSuccessStatusCode();
+
+            return await response.Content.ReadFromJsonAsync<T>();
+        }
+
+        public async Task<TResponse?> PutWithTokenAsync<TRequest, TResponse>(
+            string endpoint,
+            TRequest data,
+            string token)
+        {
+            using var request = new HttpRequestMessage(HttpMethod.Put, endpoint);
+
+            request.Headers.Authorization =
+                new AuthenticationHeaderValue("Bearer", token);
+
+            request.Content = JsonContent.Create(data);
+
+            using var response = await _httpClient.SendAsync(request);
+
+            response.EnsureSuccessStatusCode();
+
+            return await response.Content.ReadFromJsonAsync<TResponse>();
         }
     }
 }
